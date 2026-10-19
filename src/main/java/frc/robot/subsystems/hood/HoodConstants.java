@@ -3,7 +3,7 @@ package frc.robot.subsystems.hood;
 import static edu.wpi.first.units.Units.Amp;
 /* Static Imports */
 import static edu.wpi.first.units.Units.Degrees;
-import static edu.wpi.first.units.Units.Radian;
+// import static edu.wpi.first.units.Units.Radian;
 import static edu.wpi.first.units.Units.Volt;
 
 import com.ctre.phoenix6.signals.InvertedValue;

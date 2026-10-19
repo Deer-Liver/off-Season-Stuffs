@@ -8,7 +8,18 @@ import com.ctre.phoenix6.hardware.TalonFX;
 
 public class Hood {
     public Hood() {
-            TalonFX hoodMotor = new TalonFX(HoodConstants.kHoodMotorID);
+      configureMotors();
+    }
+
+    //Method to configure the motors
+    public void configureMotors() {
+          final TalonFXConfiguration talonFXConfiguration = 
+      new TalonFXConfiguration()
+        .withCurrentLimits(currentLimits)
+        .withMotorOutput(motorOutput)
+        .withFeedback(feedbackConfigs);
+    }
+    TalonFX hoodMotor = new TalonFX(HoodConstants.kHoodMotorID);
     
     final CurrentLimitsConfigs currentLimits = 
       new CurrentLimitsConfigs
@@ -25,11 +36,4 @@ public class Hood {
     final FeedbackConfigs feedbackConfigs =
       new FeedbackConfigs()
         .withSensorToMechanismRatio(HoodConstants.kHoodGearRatio);
-    
-    final TalonFXConfiguration talonFXConfiguration = 
-      new TalonFXConfiguration()
-        .withCurrentLimits(currentLimits)
-        .withMotorOutput(motorOutput)
-        .withFeedback(feedbackConfigs);
-    }
 }
