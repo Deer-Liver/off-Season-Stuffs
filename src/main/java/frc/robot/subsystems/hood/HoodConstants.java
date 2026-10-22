@@ -42,6 +42,9 @@ public class HoodConstants {
     public static final InvertedValue kInversion = InvertedValue.Clockwise_Positive; // Inversion for the hood motor
     public static final NeutralModeValue kNuetralMode = NeutralModeValue.Brake; // Neutral mode for the hood motor
 
+    public static final Angle kHoodAngleTolerance = Degrees.of(1.5); // Tolerance for the hood angle
+    public static final Angle kTargetAngle = Degrees.of(45.0); // Target angle for the hood
+
     
 
 }
