@@ -3,14 +3,19 @@ package frc.robot.subsystems.hood;
 import static edu.wpi.first.units.Units.Amp;
 /* Static Imports */
 import static edu.wpi.first.units.Units.Degrees;
+import static edu.wpi.first.units.Units.DegreesPerSecond;
+import static edu.wpi.first.units.Units.DegreesPerSecondPerSecond;
 // import static edu.wpi.first.units.Units.Radian;
 import static edu.wpi.first.units.Units.Volt;
 
 import com.ctre.phoenix6.signals.InvertedValue;
 import com.ctre.phoenix6.signals.NeutralModeValue;
 
+import edu.wpi.first.units.measure.Acceleration;
 /* Non-static imports */
 import edu.wpi.first.units.measure.Angle;
+import edu.wpi.first.units.measure.AngularAcceleration;
+import edu.wpi.first.units.measure.AngularVelocity;
 import edu.wpi.first.units.measure.Current;
 import edu.wpi.first.units.measure.Voltage;
 
@@ -44,6 +49,9 @@ public class HoodConstants {
 
     public static final Angle kHoodAngleTolerance = Degrees.of(1.5); // Tolerance for the hood angle
     public static final Angle kTargetAngle = Degrees.of(45.0); // Target angle for the hood
+
+    public static final AngularVelocity kMaxVelocity = DegreesPerSecond.of(0);
+    public static final AngularAcceleration kMaxAcceleration = DegreesPerSecondPerSecond.of(0);
 
     
 
