@@ -79,17 +79,21 @@ public class Hood {
     Constraints PIDConstraints = new Constraints(HoodConstants.kMaxVelocity.in(DegreesPerSecond),HoodConstants.kMaxAcceleration.in(DegreesPerSecondPerSecond));
 
     ProfiledPIDController hoodController = new ProfiledPIDController(kP, kI, kD, PIDConstraints);
+      ArmFeedforward hoodFeedforward = new ArmFeedforward(kS, kG, kV);
 
 
     public void goToAngle(Angle targetAngle) {
       Angle currentAngle = getAngle();
 
-      Voltage desiredVoltage = Volts.of(hoodController.calculate(currentAngle.in(Degrees), targetAngle.in(Degrees)));
+      Voltage calculatedPIDVoltage = Volts.of(hoodController.calculate(currentAngle.in(Degrees), targetAngle.in(Degrees)));
+      Voltage calculatedFeedForwardVoltage = Volts.of(hoodFeedforward.calculate(targetAngle.in(Degrees), 0));
+
+      Voltage desiredVoltage = Volts.of(calculatedFeedForwardVoltage.in(Volts) + calculatedPIDVoltage.in(Volts));
 
       hoodMotor.setVoltage(desiredVoltage.in(Volts));
     }
 
-    ArmFeedforward hoodFeedforward = new ArmFeedforward(kS, kG, kV);
+    
 
     @Logged(name = "HoodPitch")
     public Angle getAngle() {
