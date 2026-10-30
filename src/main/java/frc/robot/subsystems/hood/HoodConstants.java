@@ -1,18 +1,12 @@
 package frc.robot.subsystems.hood;
 
 import static edu.wpi.first.units.Units.Amp;
-/* Static Imports */
 import static edu.wpi.first.units.Units.Degrees;
 import static edu.wpi.first.units.Units.DegreesPerSecond;
 import static edu.wpi.first.units.Units.DegreesPerSecondPerSecond;
-// import static edu.wpi.first.units.Units.Radian;
 import static edu.wpi.first.units.Units.Volt;
-
 import com.ctre.phoenix6.signals.InvertedValue;
 import com.ctre.phoenix6.signals.NeutralModeValue;
-
-import edu.wpi.first.units.measure.Acceleration;
-/* Non-static imports */
 import edu.wpi.first.units.measure.Angle;
 import edu.wpi.first.units.measure.AngularAcceleration;
 import edu.wpi.first.units.measure.AngularVelocity;

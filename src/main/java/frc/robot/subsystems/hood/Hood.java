@@ -19,9 +19,10 @@ import edu.wpi.first.units.measure.Angle;
 import edu.wpi.first.units.measure.Current;
 import edu.wpi.first.units.measure.Voltage;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 
-public class Hood {
+public class Hood extends SubsystemBase {
     public Hood() {
       configureMotors();
     }
@@ -80,8 +81,7 @@ public class Hood {
 
     ProfiledPIDController hoodController = new ProfiledPIDController(kP, kI, kD, PIDConstraints);
       ArmFeedforward hoodFeedforward = new ArmFeedforward(kS, kG, kV);
-
-
+      
     public void goToAngle(Angle targetAngle) {
       Angle currentAngle = getAngle();
 
