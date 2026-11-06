@@ -22,6 +22,7 @@ import edu.wpi.first.units.measure.Current;
 import edu.wpi.first.units.measure.Voltage;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
+import frc.robot.HomeHood;
 
 
 public class Hood extends SubsystemBase {
@@ -112,11 +113,9 @@ public class Hood extends SubsystemBase {
     boolean atTargetAngle = Math.abs(getAngle().in(Degrees) - targetAngle.in(Degrees)) <= HoodConstants.kHoodAngleTolerance.in(Degrees);
     return atTargetAngle;
   }
-
   @Logged(name = "HoodVoltage")
   public Voltage getVoltage() {
-    return this.hoodMotor.getMotorVoltage().getValue();
-  }
+    return this.hoodMotor.getMotorVoltage().getValue();}
 
   @Logged(name = "HoodCurrent")
   public Current getCurrent() {
