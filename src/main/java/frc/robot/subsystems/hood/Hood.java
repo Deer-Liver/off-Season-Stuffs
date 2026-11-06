@@ -54,7 +54,12 @@ public class Hood extends SubsystemBase {
 
 
     TalonFX hoodMotor = new TalonFX(HoodConstants.kHoodMotorID);
-    
+    private Angle targetAngle = HoodConstants.kStartingAngle;
+    Constraints PIDConstraints = new Constraints(HoodConstants.kMaxVelocity.in(DegreesPerSecond),HoodConstants.kMaxAcceleration.in(DegreesPerSecondPerSecond));
+    ProfiledPIDController hoodController = new ProfiledPIDController(kP, kI, kD, PIDConstraints);
+    ArmFeedforward hoodFeedforward = new ArmFeedforward(kS, kG, kV);
+    public Object zerEncoder;
+
     final CurrentLimitsConfigs currentLimits = 
       new CurrentLimitsConfigs()
         .withSupplyCurrentLimit(HoodConstants.kHoodMaxCurrentSupply)
@@ -77,11 +82,6 @@ public class Hood extends SubsystemBase {
         .withMotorOutput(motorOutput)
         .withFeedback(feedbackConfigs);
 
-    Constraints PIDConstraints = new Constraints(HoodConstants.kMaxVelocity.in(DegreesPerSecond),HoodConstants.kMaxAcceleration.in(DegreesPerSecondPerSecond));
-
-    ProfiledPIDController hoodController = new ProfiledPIDController(kP, kI, kD, PIDConstraints);
-      ArmFeedforward hoodFeedforward = new ArmFeedforward(kS, kG, kV);
-      
     public void goToAngle(Angle targetAngle) {
       Angle currentAngle = getAngle();
 
@@ -90,6 +90,10 @@ public class Hood extends SubsystemBase {
 
       Voltage desiredVoltage = Volts.of(calculatedFeedForwardVoltage.in(Volts) + calculatedPIDVoltage.in(Volts));
 
+      hoodMotor.setVoltage(desiredVoltage.in(Volts));
+    }
+
+    public void runVoltage(Voltage desiredVoltage) {
       hoodMotor.setVoltage(desiredVoltage.in(Volts));
     }
 
@@ -121,5 +125,19 @@ public class Hood extends SubsystemBase {
   // @Override
   public void periodic() {
     SmartDashboard.putNumber("Hood Angle", hoodMotor.getPosition().getValue().in(Degrees));
+  }
+
+  public boolean atHomedPosition() {
+    // TODO Auto-generated method stub
+    throw new UnsupportedOperationException("Unimplemented method 'atHomedPosition'");
+  }
+
+  public void zeroEncoder() {
+    // TODO Auto-generated method stub
+    throw new UnsupportedOperationException("Unimplemented method 'coder'");
+  }
+
+  public void setTargetAngle(Angle angle) {
+    this.targetAngle = angle;
   }
 }

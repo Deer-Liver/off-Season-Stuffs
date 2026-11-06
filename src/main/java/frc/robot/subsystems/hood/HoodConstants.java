@@ -5,8 +5,10 @@ import static edu.wpi.first.units.Units.Degrees;
 import static edu.wpi.first.units.Units.DegreesPerSecond;
 import static edu.wpi.first.units.Units.DegreesPerSecondPerSecond;
 import static edu.wpi.first.units.Units.Volt;
+
 import com.ctre.phoenix6.signals.InvertedValue;
 import com.ctre.phoenix6.signals.NeutralModeValue;
+
 import edu.wpi.first.units.measure.Angle;
 import edu.wpi.first.units.measure.AngularAcceleration;
 import edu.wpi.first.units.measure.AngularVelocity;
@@ -27,9 +29,10 @@ public class HoodConstants {
 
     // Voltage and Amp Limits
     public static final Voltage kHoodMaxVoltage = Volt.of(12.0);
+    public static final Voltage kHoodHomingVoltage = Volt.of(1);
     public static final Current kHoodMaxCurrentSupply = Amp.of(40.0);
     public static final Current kHoodMaxCurrentStator = Amp.of(40.0);
-    
+    public static final Angle kStartingAngle = Degrees.of(0);
     public static final Boolean kHoodCurrentLimitSupplyEnabled = true;
     public static final Boolean kHoodCurrentLimitStatorEnabled = true;
 
