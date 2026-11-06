@@ -5,6 +5,8 @@ import static edu.wpi.first.units.Units.DegreesPerSecond;
 import static edu.wpi.first.units.Units.DegreesPerSecondPerSecond;
 import static edu.wpi.first.units.Units.Volts;
 
+import java.lang.annotation.Target;
+
 import com.ctre.phoenix6.configs.CurrentLimitsConfigs;
 import com.ctre.phoenix6.configs.FeedbackConfigs;
 import com.ctre.phoenix6.configs.MotorOutputConfigs;
@@ -106,8 +108,8 @@ public class Hood extends SubsystemBase {
     }
   
   @Logged(name = "hoodAtTargetAngle")
-  public boolean atTargetAngle() {
-    boolean atTargetAngle = Math.abs(getAngle().in(Degrees) - HoodConstants.kTargetAngle.in(Degrees)) <= HoodConstants.kHoodAngleTolerance.in(Degrees);
+  public boolean atTargetAngle(Angle targetAngle) {
+    boolean atTargetAngle = Math.abs(getAngle().in(Degrees) - targetAngle.in(Degrees)) <= HoodConstants.kHoodAngleTolerance.in(Degrees);
     return atTargetAngle;
   }
 

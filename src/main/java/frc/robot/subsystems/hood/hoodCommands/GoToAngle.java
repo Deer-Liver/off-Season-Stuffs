@@ -33,7 +33,7 @@ public class GoToAngle extends Command {
 
   @Override
   public boolean isFinished() {
-    return hood.atTargetAngle();
+    return hood.atTargetAngle(angleSupplier.get());
   }
 
   @Override
